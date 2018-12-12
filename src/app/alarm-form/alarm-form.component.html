@@ -1,0 +1,598 @@
+<div *ngIf="!isSubmitted">  
+        <div *ngIf="!loginPressed" class="container" xmls="http://www.w3.org/1999/html">
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Alarm Tracking Metrics <button class="page-header" pButton style="float: right; width: 10em;" class="btn btn-light" (mousedown)="loginPressed= true; login();">Login</button></h2>
+                    </div>
+                    </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Alarm Characteristics
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+  <div>
+    <div class="form-group">
+      <label for="ticketNum">Ticket Number: </label>
+      <input type="text"
+             class="form-control"
+             id="ticketNum"
+             [formControl]="ticketNum"
+             name="ticketNum"
+             placeholder="Ex. ALA467">
+    </div>
+    <div class="form-group">
+      <label for="customerName">Customer Name: </label>
+      <select type="select"
+             class="form-control"
+             id="customerName"
+             [formControl]="customerName"
+             name="customerName"
+             placeholder="Ex. DataSure24">
+             <option value="">--Select Customer--</option>
+             <option value="Conrail">Conrail</option>
+             <option value="Cornerstone">Cornerstone CCFCU</option>
+             <option value="Cerrone">Mark Cerrone Inc.</option>
+             <option value="Compusource">CompuSource Systems</option>
+             <option value="Franklin Oil">Franklin Oil</option>
+             <option value="Hospice">Hospice Buffalo</option>
+             <option value="Hunt">Hunt Mortgage</option>
+             <option value="Hunt Title">Hunt Title Agency</option>
+             <option value="Mount Laurel">Mount Laurel</option>
+             <option value="Parkview">Parkview</option>
+             <option value="Linkage">Linkage</option>
+             <option value="Grove City">Grove City</option>
+             <option value="Manchester">Manchester</option>
+             </select>
+    </div>
+    <div data-toggle="button">
+          <div>
+                <label  class="alert alert-light" role="alert" for="affectedAsset" style="width:22em">
+                    Affected Asset :
+                </label>
+            
+            <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                <label class="btn btn-outline-success" style="width:24em" ng-model="affectedAsset" (click)="numGreen = numGreen + 1" (click)="updateAffectedG()" uib-btn-radio="'Workstation/Personal Device'"> Workstation/Personal Device </label>
+                <label class="btn btn-outline-warning" style="width:24em" ng-model="affectedAsset" (click)="numYellow = numYellow + 1" (click)="updateAffectedY()" uib-btn-radio="' Non Core Server/Network Device '"> Non Core Server/Network Device </label>
+                <label class="btn btn-outline-danger" style="width:24em" ng-model="affectedAsset" (click)="numRed = numRed+ 1" (click)="updateAffectedR()" uib-btn-radio="' Core Asset '"> Core Asset </label>
+            </div>
+            
+            </div>
+      </div>
+      <div>
+      </div>
+      <div data-toggle="button">
+          <div>
+                <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                    Impact of Alarm :
+                </label>
+
+                <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                     <label class="btn btn-outline-success" style="width:24em" ng-model="alarmImpact" (click)="numGreen = numGreen + 1" (click)="updatealarmImpactG()" value="No outages"> No outages</label>
+                     <label class="btn btn-outline-warning" style="width:24em" ng-model="alarmImpact" (click)="numYellow = numYellow + 1" (click)="updatealarmImpactY()" value="Unknown"> Unknown </label>
+                     <label class="btn btn-outline-danger" style="width:24em" ng-model="alarmImpact" (click)="numRed = numRed+ 1" (click)="updatealarmImpactR()" value="Network Outage"> Network Outage </label>
+                </div>
+                </div>
+      </div>
+      <div data-toggle="button">
+          <div>
+                <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                    Alarm Type :
+                </label>
+                   <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                             <label class="btn btn-outline-success" style="width:24em" ng-model="alarmType" (click)="numGreen = numGreen + 1" (click)="updatealarmTypeG()" value="Recon & Probing/Enviro Awareness"> Recon & Probing/Enviro Awareness</label>
+                             <label class="btn btn-outline-warning" style="width:24em" ng-model="alarmType" (click)="numYellow = numYellow + 1"  (click)="updatealarmTypeY()" value="Delivery & Attack"> Delivery & Attack</label>
+                             <label class="btn btn-outline-danger" style="width:24em" ng-model="alarmType" (click)="numRed = numRed+ 1" (click)="updatealarmTypeR()" value="System Compromise/Exploitation"> System Compromise/Exploitation</label>
+                  </div>
+                  
+                  </div>
+     </div>
+      <div data-toggle="button">
+          <div>
+                <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                    Risk Level :
+                </label>
+                <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                        <label class="btn btn-outline-success" style="width:24em" ng-model="riskLevel" (click)="numGreen = numGreen + 1" (click)="updatealarmRiskG()" value="Low (1)"> Low (1)</label>
+                        <label class="btn btn-outline-warning" style="width:24em" ng-model="riskLevel" (click)="numYellow = numYellow + 1" (click)="updatealarmRiskY()" value="Medium (2)"> Medium (2)</label>
+                        <label class="btn btn-outline-danger" style="width:24em" ng-model="riskLevel" (click)="numRed = numRed+ 1" (click)="updatealarmRiskR()" value="High (3-10)"> High (3-10)</label>
+                 </div>
+                 </div>
+     </div>
+     <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                      Volume of Events :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="eventVolume" (click)="numGreen = numGreen + 1" (click)="updatealarmVolumeG()" value="Low (1-10)"> Low (1-10)</label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="eventVolume" (click)="numYellow = numYellow + 1" (click)="updatealarmVolumeY()" value="Medium (11-25)"> Medium (11-25)</label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="eventVolume" (click)="numRed = numRed+ 1"  (click)="updatealarmVolumeR()" value="High (26+)"> High (26+)</label>
+                   </div>
+                   </div>
+       </div>   
+       <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                      Alarm Relevancy :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="alarmRelevancy" (click)="numGreen = numGreen + 1" (click)="updatealarmRelevancyG()"  value="Not Relevant"> Not Relevant</label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="alarmRelevancy" (click)="numYellow = numYellow + 1" (click)="updatealarmRelevancyY()" value="Unknown"> Unknown</label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="alarmRelevancy" (click)="numRed = numRed+ 1" (click)="updatealarmRelevancyR()" value="Relevant"> Relevant</label>
+                   </div>
+                   </div>
+      </div>
+      <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                      Intent (malicious intent) :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="maliciousIntent" (click)="numGreen = numGreen + 1" (click)="updateIntentG()"  value="No"> No</label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="maliciousIntent" (click)="numYellow = numYellow + 1" (click)="updateIntentY()" value="No, possible misconfiguration"> No, possible misconfiguration</label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="maliciousIntent" (click)="numRed = numRed+ 1" (click)="updateIntentR()" value="Yes"> Yes</label>
+                   </div>
+                   </div>
+    </div>
+    <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                       Matching Vulnerabilities :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="matchingVuln" (click)="numGreen = numGreen + 1" (click)="updatematchingG()"  value="No"> No</label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="matchingVuln" (click)="numYellow = numYellow + 1" (click)="updatematchingY()" value="Unknown"> Unknown </label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="matchingVuln" (click)="numRed = numRed+ 1" (click)="updatematchingR()" value="Yes"> Yes</label>
+                   </div>
+                   </div>
+    </div>
+    <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                       Availability Monitoring :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="availabilityMon" (click)="numGreen = numGreen + 1" (click)="updateavailG()"  value="No"> No</label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="availabilityMon" (click)="numYellow = numYellow + 1" (click)="updateavailY()" value="Unknown"> Unknown </label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="availabilityMon" (click)="numRed = numRed+ 1" (click)="updateavailR()" value="Down"> Down</label>
+                   </div>
+                   </div>
+    </div>
+    <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                       Account Name/Type :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="accountName" (click)="numGreen = numGreen + 1" (click)="updatenameG()"  value="User"> User </label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="accountName" (click)="numYellow = numYellow + 1" (click)="updatenameY()" value="Unknown"> Unknown </label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="accountName" (click)="numRed = numRed+ 1" (click)="updatenameR()" value="Administrator"> Administrator</label>
+                   </div>
+                   </div>
+    </div>
+    <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                       How long has the threat been known :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="howLong" (click)="numGreen = numGreen + 1" (click)="updatehowLongG()"  value="Over 1 year"> Over 1 year</label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="howLong" (click)="numYellow = numYellow + 1" (click)="updatehowLongY()" value="Less than 1 year"> Less than 1 year</label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="howLong" (click)="numRed = numRed+ 1" (click)="updatehowLongR()" value="Within 1 month or Zero Day"> Within 1 month or Zero Day</label>
+                   </div>
+                   </div>
+    </div>
+    <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                       Did attacker gain access :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="gainAccess" (click)="numGreen = numGreen + 1" (click)="updateAccessG()"  value="No"> No</label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="gainAccess" (click)="numYellow = numYellow + 1" (click)="updateAccessY()" value="Unknown"> Unknown</label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="gainAccess" (click)="numRed = numRed+ 1" (click)="updateAccessR()" value="Yes"> Yes</label>
+                   </div>
+                   </div>
+    </div>
+    <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                       Was data extracted :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="dataExtracted" (click)="numGreen = numGreen + 1" (click)="updateextractedG()"  value="No"> No</label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="dataExtracted" (click)="numYellow = numYellow + 1" (click)="updateextractedY()" value="Unknown"> Unknown</label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="dataExtracted" (click)="numRed = numRed+ 1" (click)="updateextractedR()" value="Yes"> Yes</label>
+                   </div>
+                   </div>
+    </div>
+    <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                       Has the CIA triad been affected :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="ciaTriad" (click)="numGreen = numGreen + 1" (click)="updateCIAG()"  value="No"> No</label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="ciaTriad" (click)="numYellow = numYellow + 1" (click)="updateCIAY()" value="Unknown"> Unknown</label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="ciaTriad" (click)="numRed = numRed+ 1" (click)="updateCIAR()" value="Yes"> Yes</label>
+                   </div>
+                   </div>
+    </div>
+    <div data-toggle="button">
+            <div>
+                  <label  class="alert alert-light" role="alert" for="green" style="width:22em">
+                       Is Sensitive Info Involved :
+                  </label>
+                  <div class="btn-group btn-group-toggle radio-inline" style="float: middle;" >
+                          <label class="btn btn-outline-success" style="width:24em" ng-model="sensitiveInfo" (click)="numGreen = numGreen + 1" (click)="updateSensitiveG()"  value="No"> No</label>
+                          <label class="btn btn-outline-warning" style="width:24em" ng-model="sensitiveInfo" (click)="numYellow = numYellow + 1" (click)="updateSensitiveY()" value="Unknown"> Unknown</label>
+                          <label class="btn btn-outline-danger" style="width:24em" ng-model="sensitiveInfo" (click)="numRed = numRed+ 1" (click)="updateSensitiveR()" value="Yes"> Yes</label>
+                   </div>
+                   </div>
+    </div>
+  <div class="form-group">
+    <label for="timeTaken">Estimated Time Taken to review alarm: </label>
+    <select type="select"
+            class="form-control"
+            id="timeTaken"
+            [formControl]="timeTaken"
+            name="timeTaken">
+             <option value="">--Select Time--</option>
+             <option value="4">Less Than 5 Minutes</option>
+             <option value="5">5 Minutes</option>
+             <option value="10">10 Minutes</option>
+             <option value="15">15 Minutes</option>
+             <option value="20">20 Minutes</option>
+             <option value="30">30 Minutes</option>
+             <option value="45">45 Minutes</option>
+             <option value="60">1 Hour</option>
+             <option value="90">1.5 Hour</option>
+             <option value="120">2 Hours</option>
+             <option value="125">2+ Hours</option>
+     </select>     
+  </div>
+
+  <button pButton  class="btn btn-dark" (click)="isSubmitted= true; createPerson(ticketNum, customerName, affectedAsset, accountName, alarmImpact, alarmRelevancy, alarmType, availabilityMon,
+  ciaTriad, eventVolume, dataExtracted, gainAccess, howLong, maliciousIntent, matchingVuln, riskLevel, sensitiveInfo, timeTaken);">Submit</button>
+  <a pButton  class="btn btn-danger" href="http://alarmmetrics.s3-website.us-east-2.amazonaws.com">Clear</a>
+
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div *ngIf="isSubmitted">
+        <div *ngIf="!loginPressed" class="container" xmls="http://www.w3.org/1999/html">
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Alarm Metric Details</h2>
+                    </div>
+                    </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default" class="border border-secondary rounded">
+                    <div class="panel-heading">
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+      <li> 
+          <label role="alert">
+              Ticket Number: {{ ticketNum.value }}
+                <label style="float: right"> Green</label>
+          </label>
+          <br>
+          <label role="alert">
+                Customer Name: {{ customerName.value }}
+          </label>
+       <div >
+          <label  role="alert">
+                    Affected Asset: {{ affectedAsset.value }}
+          </label>
+        </div>
+        <div >
+            <label  role="alert">
+                    Impact of Alarm: {{ alarmImpact.value }}
+            </label>
+          </div>
+        <div >
+            <label role="alert">
+                     Alarm Type: {{ alarmType.value }}
+            </label>
+        </div>
+        <div >
+            <label role="alert">
+                    Risk Level:  {{ riskLevel.value }}
+            </label>
+        </div>
+        <div >
+            <label role="alert">
+                    Volume of Events:  {{ eventVolume.value }}
+            </label>
+        </div>
+        <div >
+            <label  role="alert">
+                    Alarm Relevancy: {{ alarmRelevancy.value }}
+            </label>
+        </div>
+        <div >
+            <label role="alert">
+                    Intent (malicious intent):   {{ maliciousIntent.value }}
+            </label>
+        </div>
+        <div >
+            <label  role="alert">
+                    Matching Vulnerabilities:   {{ matchingVuln.value }}
+            </label>
+        </div>
+        <div >
+            <label role="alert">
+                    Availability Monitoring:  {{ availabilityMon.value }}
+            </label>
+        </div>
+        <div >
+            <label role="alert">
+                    Account Name:  {{ accountName.value }}
+            </label>
+        </div>
+        <div >
+            <label role="alert">
+                    How long has the threat been known:  {{ howLong.value }}
+            </label>
+        </div>
+        <div >
+            <label role="alert">
+                     Did the attacker gain access: {{ gainAccess.value }}
+            </label>
+        </div>
+        <div >
+            <label  role="alert">
+                    Was data extracted:  {{ dataExtracted.value }}
+            </label>
+        </div>
+        <div >
+            <label role="alert">
+                    Has the CIA Triad been violated:  {{ ciaTriad.value }}
+            </label>
+        </div>
+        <div >
+            <label role="alert">
+                    Is sensitive info involved: {{ sensitiveInfo.value }}
+            </label>
+        </div>
+        <div >
+                <label role="alert">
+                        Time Taken to review alarm:  {{ timeTaken.value }} Minutes
+                </label>
+            </div>
+        <div>
+          <label class="alert alert-success" style="width: 30em" role="alert">
+                Greens: {{ numGreen }}
+          </label>
+        </div>
+        <div>
+          <label  class="alert alert-warning" style="width: 30em" role="alert">
+                Yellows: {{ numYellow }}
+          </label>
+        </div>
+        <div>
+          <label  class="alert alert-danger" style="width: 30em" role="alert">
+                Reds: {{ numRed }}
+          </label>
+        </div>
+      </li>
+    <div class="p-4">
+        <button  class="btn btn-danger" (click)="isSubmitted= false; newAlarm();">New Alarm</button>
+        <button  class="btn btn-dark" (mousedown)="isSubmitted= false">Edit Alarm</button>
+    </div>
+    <br>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <div *ngIf="loginPressed" >  
+            <div class="container" xmls="http://www.w3.org/1999/html">
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 class="page-header">Alarm Tracking Metrics 
+                                <button class="page-header" pButton style="float: right; width: 10em;" class="btn btn-light" (mousedown)="loginPressed= false">Back</button>
+                                <button class="page-header" pButton style="float: right; width: 10em;" class="btn btn-light" (mousedown)="Refresh();">Refresh</button>
+                                <div class="btn-group" style="float:right;">
+                                    <button type="button" class="btn btn-secondary">Toggle All Attributes</button>
+                                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item" (click)="checkedAffected = true" href="#">Ticket Number</a>
+                                      <a class="dropdown-item" href="#">Customer Namet</a>
+                                      <a class="dropdown-item" href="#">Affected Asset</a>
+                                      <a class="dropdown-item" href="#">Alarm Impact</a>
+                                      <a class="dropdown-item" href="#">Risk Level</a>
+                                      <a class="dropdown-item" href="#">Event Volume</a>
+                                      <a class="dropdown-item" href="#">Alarm Relevancy</a>
+                                      <a class="dropdown-item" href="#">Intent</a>
+                                      <a class="dropdown-item" href="#">Matching Vuln</a>
+                                      <a class="dropdown-item" href="#">Availability</a>
+                                      <a class="dropdown-item" href="#">Account Type</a>
+                                      <a class="dropdown-item" href="#">How Long</a>
+                                      <a class="dropdown-item" href="#">Data Extracted</a>
+                                      <a class="dropdown-item" href="#">Gain Access</a>
+                                      <a class="dropdown-item" href="#">CIA Triad</a>
+                                      <a class="dropdown-item" href="#">Sensitive Info</a>
+                                      <a class="dropdown-item" href="#">Time Taken</a>
+                                
+                                    </div>
+                                  </div>
+                                    
+                            
+                            
+                            
+                            </h2>
+                        </div>
+                        </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Alarm Database
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+      <div>
+        
+            <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                      <th>Ticket Number</th>
+                      <th>Customer Name</th>
+                      <th>Affected Asset</th>
+                      <th>Alarm Impact</th>
+                      <th>Alarm Type</th>
+                      <th>Risk Level</th>
+                      <th>Event Volume</th>
+                      <th>Alarm Relevancy</th>
+                      <th>Intent</th>
+                      <th>Matching Vuln</th>
+                <!--  <th>Availability</th>
+                      <th>Account Type</th>
+                      <th>How Long</th>
+                      -->
+                      <th>Gain Access</th>
+                      <th>Data Extracted</th>
+                      <th>CIA Triad</th>
+                      <th>Sensitive Info</th>
+                      <th>Time Taken</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let person of people" >
+                      <td class="vert-align">{{person.ticketNum.value}}</td>
+                      <td class="vert-align">{{person.customerName.value}}</td>
+                      <td class="vert-align">{{person.affectedAsset.value}}</td>
+                      <td class="vert-align">{{person.alarmImpact.value}}</td>
+                      <td class="vert-align">{{person.alarmType.value}}</td>
+                      <td class="vert-align">{{person.riskLevel.value}}</td>
+                      <td class="vert-align">{{person.eventVolume.value}}</td>
+                      <td class="vert-align">{{person.alarmRelevancy.value}}</td>
+                      <td class="vert-align">{{person.maliciousIntent.value}}</td>
+                      <td class="vert-align">{{person.matchingVuln.value}}</td>
+                 <!-- <td class="vert-align">{{person.availabilityMon.value}}</td>
+                      <td class="vert-align">{{person.accountName.value}}</td>
+                      <td class="vert-align">{{person.howLong.value}}</td>
+                      -->
+                      <td class="vert-align">{{person.gainAccess.value}}</td>
+                      <td class="vert-align">{{person.dataExtracted.value}}</td>
+                      <td class="vert-align">{{person.ciaTriad.value}}</td>
+                      <td class="vert-align">{{person.sensitiveInfo.value}}</td>
+                      <td class="vert-align">{{person.timeTaken.value}}</td>
+                      
+                    </tr>
+                    </tbody>
+                  </table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--
+  <ul class="questionS">
+    <li *ngFor="let question of questionS">
+        <span class="badge">{{question.name}}</span>
+   </li>
+   </ul>
+
+
+   
+  
+
+<div>
+        <div class="form-group">
+          <li *ngFor="let choice of choiceS"> 
+              <label  class="alert alert-light" role="alert" for="green">
+                  {{choice.name}}
+              </label>
+          <div class="btn-group btn-group-toggle choiceS" data-toggle="buttons" style="float: right;">
+           <label class="btn btn-outline-success radio-inline" style="width:24em">
+              <input type="radio" required ngModel name={{choice.nameG}} value={{choice.green}}> {{choice.green}}
+            </label>
+                      
+            <label class="btn btn-outline-warning radio-inline" style="width:24em">
+               <input type="radio" required ngModel name={{choice.nameG}} value={{choice.yellow}}> {{choice.yellow}}
+            </label>
+           
+            <label class="btn btn-outline-danger radio-inline" style="width:24em">
+               <input type="radio" required ngModel name={{choice.nameG}} value={{choice.red}}> {{choice.red}}
+            </label>  
+          </div>
+          </li>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+      <div class="form-group">
+          <li *ngFor="let choice of choiceS"> 
+              <label  class="alert alert-light" role="alert" for="green">
+                  {{choice.name}}
+              </label>
+            </li>
+          <div class="btn-group btn-group-toggle" data-toggle="radio-button" style="float: right;">
+           <label class="btn btn-outline-success radio-inline" style="width:24em">
+              <input type="radio" required ngModel name="affected" value="Workstation/Personal Device"> Workstation/Personal Device
+            </label>
+              <label class="btn btn-outline-warning radio-inline" style="width:24em">
+                <input type="radio" required ngModel name="affected" value="Non-Core Network Device"> Non-Core Network Device
+              </label>
+                 <label class="btn btn-outline-danger radio-inline" style="width:24em">
+                  <input type="radio" required ngModel name="affected" value="Core Asset"> Core Asset
+                 </label>
+          </div>
+    
+      </div>
+-->
